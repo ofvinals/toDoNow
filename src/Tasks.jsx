@@ -1,18 +1,15 @@
-import { useTasks } from './hooks/useTask';
+import { TaskContext } from './context/TaskContext';
 import { List } from './components/List';
 import { useNavigate } from 'react-router-dom';
 import { Navbar } from './components/Navbar';
+import { useContext } from 'react';
 
 export const Tasks = () => {
-	const {
-		tareas,
-		handleDelete,
-		tasksCount,
-		pendingTasksCount,
-		handleUpdate,
-		handleCompleteTask,
-	} = useTasks();
-	console.log(tareas)
+	const { tareas, handleDelete, handleUpdate, handleCompleteTask } =
+		useContext(TaskContext);
+	console.log(tareas);
+	const tasksCount = tareas.length;
+	const pendingTasksCount = tareas.filter((tarea) => !tarea.done).length;
 	const navigate = useNavigate();
 
 	return (
