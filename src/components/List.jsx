@@ -1,16 +1,20 @@
 /* eslint-disable react/prop-types */
+import { useTasks } from '../hooks/useTask';
 import { TaskItem } from './TaskItem';
 
-export const List = ({
-	tareas,
-	handleDelete,
-	handleUpdate,
-	handleCompleteTask,
-}) => {
+export const List = ({tareas}) => {
+	const {
+	
+		handleDelete,
+		handleUpdate,
+		handleCompleteTask,
+	} = useTasks();
+	console.log(tareas)
 	return (
 		<>
+		
 			<ul className=''>
-				{tareas.map((tarea) => (
+				{tareas && tareas.map((tarea) => (
 					<TaskItem
 						key={tarea.id}
 						tarea={tarea}

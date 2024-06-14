@@ -1,9 +1,9 @@
-import { Tasks } from './Tasks';
+import { AppRouter } from '../router/AppRouter';
 
 function App() {
 	return (
 		<>
-			<Tasks />
+			<AppRouter />
 		</>
 	);
 }

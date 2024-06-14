@@ -2,6 +2,7 @@ export const tareaReducer = (state, action) => {
 	switch (action.type) {
 		case 'Agregar tarea':
 			return [...state, action.payload];
+			
 
 		case 'Borrar tarea':
 			return state.filter((tarea) => tarea.id !== action.payload);

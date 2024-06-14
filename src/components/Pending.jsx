@@ -1,9 +1,9 @@
-import { useTasks } from './hooks/useTask';
-import { List } from './components/List';
+import { useTasks } from '../hooks/useTask';
+import { List } from '../components/List';
 import { useNavigate } from 'react-router-dom';
-import { Navbar } from './components/Navbar';
+import { Navbar } from '../components/Navbar';
 
-export const Tasks = () => {
+export const Pending = () => {
 	const {
 		tareas,
 		handleDelete,
@@ -12,7 +12,6 @@ export const Tasks = () => {
 		handleUpdate,
 		handleCompleteTask,
 	} = useTasks();
-	console.log(tareas)
 	const navigate = useNavigate();
 
 	return (
@@ -24,7 +23,7 @@ export const Tasks = () => {
 			<div className='flex flex-col justify-center mx-10 mt-10'>
 				<div className='w-full flex flex-col justify-center items-center'>
 					<h2 className='text-3xl font-semibold pb-5'>
-						Lista de tareas pendientes
+						Tareas pendientes
 					</h2>
 
 					<div className='w-1/3 flex flex-row justify-between items-center'>

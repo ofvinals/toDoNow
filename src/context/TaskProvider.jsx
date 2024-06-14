@@ -1,13 +1,18 @@
+/* eslint-disable react/prop-types */
 import { useReducer } from 'react';
 import { tareaReducer } from '../TaskReducer';
+import { TaskContext } from './TaskContext';
 
-export const useTasks = () => {
-	const [tareas, dispatch] = useReducer(tareaReducer, []);
+export const TaskProvider = ({ children }) => {
+   const valorInicial = {
+		tareas: [],
+	};
+	const [tareas, dispatch] = useReducer(tareaReducer, valorInicial);
 	const tasksCount = tareas.length;
-	const pendingTasksCount = tareas.filter(tarea => !tarea.done).length;
+	// const pendingTasksCount = tareas.filter((tarea) => !tarea.done).length;
 
 	const handleAdd = (tarea) => {
-		console.log(tarea)
+		console.log(tarea);
 		const action = {
 			type: 'Agregar tarea',
 			payload: tarea,
@@ -43,13 +48,18 @@ export const useTasks = () => {
 		dispatch(action);
 	};
 
-	return {
-		handleAdd,
-		handleUpdate,
-		tareas,
-		handleDelete,
-		handleCompleteTask,
-		tasksCount,
-		pendingTasksCount,
-	};
+	return (
+		<TaskContext.Provider
+			value={{
+				handleAdd,
+				handleUpdate,
+				tareas,
+				handleDelete,
+				handleCompleteTask,
+				tasksCount,
+				// pendingTasksCount,
+			}}>
+			{children}
+		</TaskContext.Provider>
+	);
 };
