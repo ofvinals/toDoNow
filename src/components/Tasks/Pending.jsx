@@ -1,26 +1,22 @@
 import { useContext } from 'react';
-import { List } from './List';
+import { List } from '../../components/Tasks/List';
 import { useNavigate } from 'react-router-dom';
-import { TaskContext } from '../context/TaskContext';
+import { TaskContext } from '../../context/TaskContext';
 
-export const Done = () => {
+export const Pending = () => {
 	const { tareas, handleDelete, handleUpdate, handleCompleteTask } =
 		useContext(TaskContext);
 	const navigate = useNavigate();
-
 	const tasksCount = tareas.length;
-	const doneTasks = tareas.filter((tarea) => tarea.done);
-	const pendingTasksCount = tareas.filter((tarea) => tarea.done).length;
+	const pendingTasks = tareas.filter((tarea) => !tarea.done);
+	const pendingTasksCount = tareas.filter((tarea) => !tarea.done).length;
 
 	return (
 		<>
-			<div className='w-full flex flex-row justify-around items-center mt-10'>
-				<div className='w-1/3'>
-					<img src='Coffee break-pana.png' alt='imgtasksdone' />
-				</div>
-				<div>
+			<div className='w-full flex flex-row justify-around  mt-10'>
+				<div className='w-1/2 flex flex-col justify-center items-center'>
 					<h2 className='text-3xl font-semibold mb-10 pb-5'>
-						Tareas Finalizadas
+						Tareas Pendientes
 					</h2>
 
 					<div className='w-full flex flex-row justify-around items-center'>
@@ -31,7 +27,7 @@ export const Done = () => {
 							</span>
 						</h3>
 						<h3>
-							Finalizadas:{' '}
+							Pendientes:{' '}
 							<span className='text-pink-700 font-bold'>
 								{pendingTasksCount}
 							</span>
@@ -45,10 +41,14 @@ export const Done = () => {
 						</button>
 					</div>
 				</div>
+				<div className='w-1/3'>
+					<img src='/Time management-amico.png' alt='imgpending' />
+				</div>
 			</div>
-
+			<hr className='bg-black mx-3 h-0.5' />
 			<List
-				tareas={doneTasks}
+				type={'pendientes'}
+				tareas={pendingTasks}
 				handleDelete={handleDelete}
 				handleUpdate={handleUpdate}
 				handleCompleteTask={handleCompleteTask}

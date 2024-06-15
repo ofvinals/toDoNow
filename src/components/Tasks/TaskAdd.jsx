@@ -1,8 +1,8 @@
 /* eslint-disable react/prop-types */
 import { useContext, useState } from 'react';
-import { useForm } from '../hooks/useForm';
+import { useForm } from '../../hooks/useForm';
 import { useNavigate } from 'react-router-dom';
-import { TaskContext } from '../context/TaskContext';
+import { TaskContext } from '../../context/TaskContext';
 
 export const TaskAdd = () => {
 	const [error, setError] = useState('');
