@@ -26,16 +26,7 @@ export const Navbar = () => {
 					onClick={() => navigate('/contacts')}>
 					Contactos
 				</button>
-				<button
-					className='hover:text-pink-700 hover:underline'
-					onClick={() => navigate('/')}>
-					Ingresar
-				</button>
-				<button
-					className='hover:text-pink-700 hover:underline'
-					onClick={() => navigate('/')}>
-					Registrar
-				</button>
+
 			</div>
 			;
 		</div>
