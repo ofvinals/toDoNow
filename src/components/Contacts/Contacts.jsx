@@ -62,7 +62,7 @@ export const Contacts = () => {
 	return (
 		<>
 			<div>
-				<h1 className='text-4xl text-center text-pink-700 font-bold mt-12'>
+				<h1 className='h-full text-4xl text-center text-pink-700 font-bold mt-12'>
 					Lista de tus Contactos
 				</h1>
 				<div className='flex flex-row justify-around items-center '>
@@ -126,7 +126,7 @@ export const Contacts = () => {
 							</div>
 						</div>
 					) : (
-						<div className='flex flex-col items-center justify-center'>
+						<div className='flex flex-col items-center justify-center mt-5'>
 							<h3 className='w-full mb-10'>
 								Contactos Registrados:{' '}
 								<span className='text-pink-700 font-bold'>

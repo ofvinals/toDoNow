@@ -36,7 +36,7 @@ export const Done = () => {
 							</span>
 						</h3>
 					</div>
-					<div className='w-full flex justify-end mt-10'>
+					<div className='w-full flex justify-center mt-10'>
 						<button
 							className=' bg-pink-700 w-fit p-3 rounded-xl font-semibold text-white mb-3 hover:bg-violet-400'
 							onClick={() => navigate('/taskadd')}>

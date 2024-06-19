@@ -11,7 +11,7 @@ export const List = ({
 	handleUpdate,
 }) => {
 	const [editingContactId, setEditingContactId] = useState(null);
-	const [searchQuery, setSearchQuery] = useState('');
+	const [search, setSearch] = useState('');
 	const [currentPage, setCurrentPage] = useState(1);
 
 	const handleEditClick = (id) => {
@@ -25,10 +25,10 @@ export const List = ({
 	const contactsPerPage = 10;
 	const filteredContacts = contacts.filter(
 		(contact) =>
-			contact.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-			contact.subname.toLowerCase().includes(searchQuery.toLowerCase()) ||
-			contact.tel.toLowerCase().includes(searchQuery.toLowerCase()) ||
-			contact.email.toLowerCase().includes(searchQuery.toLowerCase())
+			contact.name.toLowerCase().includes(search.toLowerCase()) ||
+			contact.subname.toLowerCase().includes(search.toLowerCase()) ||
+			contact.tel.toLowerCase().includes(search.toLowerCase()) ||
+			contact.email.toLowerCase().includes(search.toLowerCase())
 	);
 
 	const indexOfLastContact = currentPage * contactsPerPage;
@@ -43,11 +43,11 @@ export const List = ({
 
 	return (
 		<>
-			<div className='flex flex-col my-5 shadow-2xl '>
+			<div className='flex flex-col my-5 shadow-2xl'>
 				<div className='overflow-x-auto'>
 					<Search
-						searchQuery={searchQuery}
-						setSearchQuery={setSearchQuery}
+						search={search}
+						setSearch={setSearch}
 					/>
 					<table className='min-w-full divide-y divide-gray-200'>
 						<thead className='bg-gray-50'>
@@ -70,58 +70,68 @@ export const List = ({
 							</tr>
 						</thead>
 						<tbody className='bg-white divide-y divide-gray-200'>
-							{currentContacts.map((contact) =>
-								editingContactId === contact.id ? (
-									<EditableRow
-										key={contact.id}
-										contact={contact}
-										handleUpdate={(updatedContact) => {
-											handleUpdate(updatedContact);
-											setEditingContactId(null);
-										}}
-										handleCancelClick={handleCancelClick}
-									/>
-								) : (
-									<tr key={contact.id}>
-										<td className='px-6 py-4 whitespace-nowrap'>
-											<p>{contact.name}</p>
-										</td>
-										<td className='px-6 py-4 whitespace-nowrap'>
-											<p>{contact.subname}</p>
-										</td>
-										<td className='px-6 py-4 whitespace-nowrap'>
-											<p>{contact.tel}</p>
-										</td>
-										<td className='px-6 py-4 whitespace-nowrap'>
-											<p>{contact.email}</p>
-										</td>
-										<td className='px-6 py-4 whitespace-nowrap flex'>
-											<button
-												className='bg-blue-500 text-xl rounded-full p-2 text-white mx-1 hover:text-blue-500 hover:bg-white'
-												onClick={() => handleEditClick(contact.id)}>
-												<FaEdit />
-											</button>
-											<button
-												className='bg-red-500 text-xl rounded-full p-2 text-white mx-1 hover:text-red-500 hover:bg-white'
-												onClick={() => handleDelete(contact.id)}>
-												<FaTrash />
-											</button>
-											<button
-												className={`text-xl rounded-full p-2 mx-1 ${
-													!contact.favorite
-														? 'bg-black text-white'
-														: 'bg-yellow-500 text-white'
-												}`}
-												onClick={() => handleFavorite(contact.id)}>
-												{!contact.favorite ? (
-													<FaRegStar />
-												) : (
-													<FaStar />
-												)}
-											</button>
-										</td>
-									</tr>
+							{currentContacts.length > 0 ? (
+								currentContacts.map((contact) =>
+									editingContactId === contact.id ? (
+										<EditableRow
+											key={contact.id}
+											contact={contact}
+											handleUpdate={(updatedContact) => {
+												handleUpdate(updatedContact);
+												setEditingContactId(null);
+											}}
+											handleCancelClick={handleCancelClick}
+										/>
+									) : (
+										<tr key={contact.id}>
+											<td className='px-6 py-4 whitespace-nowrap'>
+												<p>{contact.name}</p>
+											</td>
+											<td className='px-6 py-4 whitespace-nowrap'>
+												<p>{contact.subname}</p>
+											</td>
+											<td className='px-6 py-4 whitespace-nowrap'>
+												<p>{contact.tel}</p>
+											</td>
+											<td className='px-6 py-4 whitespace-nowrap'>
+												<p>{contact.email}</p>
+											</td>
+											<td className='px-6 py-4 whitespace-nowrap flex'>
+												<button
+													className='bg-blue-500 text-xl rounded-full p-2 text-white mx-1 hover:text-blue-500 hover:bg-white'
+													onClick={() => handleEditClick(contact.id)}>
+													<FaEdit />
+												</button>
+												<button
+													className='bg-red-500 text-xl rounded-full p-2 text-white mx-1 hover:text-red-500 hover:bg-white'
+													onClick={() => handleDelete(contact.id)}>
+													<FaTrash />
+												</button>
+												<button
+													className={`text-xl rounded-full p-2 mx-1 ${
+														!contact.favorite
+															? 'bg-black text-white'
+															: 'bg-yellow-500 text-white'
+													}`}
+													onClick={() => handleFavorite(contact.id)}>
+													{!contact.favorite ? (
+														<FaRegStar />
+													) : (
+														<FaStar />
+													)}
+												</button>
+											</td>
+										</tr>
+									)
 								)
+							) : (
+								<tr>
+									<td colSpan="5" className='px-6 py-4 whitespace-nowrap'>
+										<h1 className='bg-violet-400 text-4xl text-white p-5 font-semibold rounded-lg w-[500px] text-center text-wrap'>
+											Sin contactos para mostrar
+										</h1>
+									</td>
+								</tr>
 							)}
 						</tbody>
 					</table>
@@ -134,7 +144,7 @@ export const List = ({
 						key={index}
 						onClick={() => paginate(index + 1)}
 						className={`bg-pink-700 text-general mx-1 py-2 px-4 border border-gray-300 ${
-							currentPage === index + 1 ? 'bg-specific' : ''
+							currentPage === index + 1 ? 'bg-pink-500' : ''
 						}`}>
 						{index + 1}
 					</button>

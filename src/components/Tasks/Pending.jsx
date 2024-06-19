@@ -15,7 +15,7 @@ export const Pending = () => {
 		<>
 			<div className='w-full flex flex-row justify-around  mt-10'>
 				<div className='w-1/2 flex flex-col justify-center items-center'>
-					<h2 className='text-3xl font-semibold mb-10 pb-5'>
+					<h2 className='text-3xl font-semibold mb-10 pb-5 text-center'>
 						Tareas Pendientes
 					</h2>
 
@@ -33,7 +33,7 @@ export const Pending = () => {
 							</span>
 						</h3>
 					</div>
-					<div className='w-full flex justify-end mt-10'>
+					<div className='w-full flex justify-center mt-10'>
 						<button
 							className=' bg-pink-700 w-fit p-3 rounded-xl font-semibold text-white mb-3 hover:bg-violet-400'
 							onClick={() => navigate('/taskadd')}>

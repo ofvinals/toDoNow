@@ -6,7 +6,7 @@ export const Home = () => {
 	return (
 		<>
 			<div className='flex flex-col justify-center items-center mx-10 mt-10'>
-				<h1 className='text-pink-700 text-4xl font-bold'>
+				<h1 className='text-pink-700 text-4xl font-bold text-center'>
 					Bienvenido a TO DO!
 				</h1>
 				<img

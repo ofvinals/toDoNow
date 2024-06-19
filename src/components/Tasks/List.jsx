@@ -34,7 +34,7 @@ export const List = ({ tareas, type }) => {
 					))
 				) : (
 					<div className='flex justify-center items-center w-full my-20'>
-						<h1 className='bg-violet-400 text-4xl text-white p-5 font-semibold rounded-lg'>
+						<h1 className='bg-violet-400 text-4xl text-white p-5 font-semibold rounded-lg text-center'>
 							Sin tareas {type} para mostrar
 						</h1>
 					</div>
